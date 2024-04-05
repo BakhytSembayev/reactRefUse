@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import { useRef, useState } from 'react';
+import styles from './App.css';
+
+export const App = () => {
+  const [stateCount, setStateCount] = useState(0);
+  const refCount = useRef(0);
+  
+  const incrementRefCount = () => {
+    refCount.current += 1;
+    console.log('refCount = ' + refCount.current);
+  };
+  
+  const incrementStateCount = () => {
+    setStateCount(stateCount + 1);
+		console.log('stateCount = ' + stateCount);
+  };
+
+  return(
+    <div>
+      <p>refCount: {refCount.current}</p>
+      <button onClick={incrementRefCount}>Прибавить к refCount</button>
+      <p>stateCount: {stateCount}</p>
+      <button onClick={incrementStateCount}>Прибавить к stateCount</button>
     </div>
   );
 }
